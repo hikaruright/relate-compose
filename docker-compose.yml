@@ -1,0 +1,23 @@
+version: '3'
+
+services: 
+    app:
+        container_name: relate_app
+        build: ./app
+        ports: 
+            - 8000:8000
+    db:
+        container_name: relate_db
+        image: postgres:11-alpine
+        environment: 
+            POSTGRES_USER: relate
+            POSTGRES_DB: relate
+            POSTGRES_PASSWORD: relate
+    mail:
+        container_name: relate_mail
+        image: takeyamajp/postfix
+        environment: 
+            - maildomain=solxyz.info
+            - smtp_user=relate:relate
+        volumes:
+            - ./data:/var/lib/postgresql/data
