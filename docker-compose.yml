@@ -13,11 +13,11 @@ services:
             POSTGRES_USER: relate
             POSTGRES_DB: relate
             POSTGRES_PASSWORD: relate
+        volumes:
+            - ./data:/var/lib/postgresql/data
     mail:
         container_name: relate_mail
         image: takeyamajp/postfix
         environment: 
             - maildomain=solxyz.info
             - smtp_user=relate:relate
-        volumes:
-            - ./data:/var/lib/postgresql/data
